@@ -10,7 +10,18 @@ class EmployeeController extends Controller
 {
     public function addEmployee(Request $request)
     {
-        return response()->json(['res'=>'Data Get successfully']);
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('images', $filename, 'public');
+    
+        $employee = new Employee;
+        $employee->name = $request->input('name'); // Use input to get form data
+        $employee->email = $request->input('email');
+        $employee->image = $filePath;
+    
+        $employee->save();
+    
+        return response()->json(['res' => 'Employee created successfully in Database']);
     }
     /**
      * Display a listing of the resource.

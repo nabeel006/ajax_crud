@@ -8,9 +8,9 @@
     
 <form id="my-form">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-     <input type="text" placeholder="Enter Name">
+     <input type="text" name="name" id="name" placeholder="Enter Name">
      <br><br>
-     <input type="email" placeholder="Enter Email">
+     <input type="email" name="email" id="email" placeholder="Enter Email">
      <br><br>
      <input type="file" name="file">
      <br><br>
@@ -33,8 +33,8 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                   // $("#output").text(data.res);
-                   alert(data.res); 
+                   $("#output").text(data.res);
+                   //alert(data.res); 
                    $("#btnSubmit").prop("disabled", false);
                 },
                 error: function(e) {
