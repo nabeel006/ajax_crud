@@ -23,6 +23,14 @@ class EmployeeController extends Controller
     
         return response()->json(['res' => 'Employee created successfully in Database']);
     }
+
+    public function getEmployees()
+    {
+        $employees = Employee::all();
+        return response()->json(['employees' => $employees]);
+    }
+
+
     /**
      * Display a listing of the resource.
      */

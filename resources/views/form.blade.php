@@ -36,10 +36,16 @@
                    $("#output").text(data.res);
                    //alert(data.res); 
                    $("#btnSubmit").prop("disabled", false);
+                   $("input[type='text']").val('');
+                   $("input[type='email']").val('');
+                   $("input[type='file']").val('');
                 },
                 error: function(e) {
                     $("#output").text(e.responseText);
                     $("#btnSubmit").prop("disabled", false);
+                     $("input[type='text']").val('');
+                   $("input[type='email']").val('');
+                   $("input[type='file']").val('');
                 }
             });
         });

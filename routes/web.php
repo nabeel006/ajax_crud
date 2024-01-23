@@ -23,5 +23,11 @@ Route::get('add-employee', function () {
 });
 Route::post('add-employee',[EmployeeController::class,'addEmployee'])->name('addEmployee');
 
+Route::get('get-employee', function () {
+    return view('employees');
+});
+Route::get('get-all-employee',[EmployeeController::class,'getEmployees'])->name('getEmployees');
 
-Route::resource('employees','EmployeesController');
+
+
+Route::resource('employees','EmployeeController');
