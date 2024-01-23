@@ -7,26 +7,41 @@
 <body>
     
 <form id="my-form">
-     <input type="text" placeholder="Enter Name" required>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+     <input type="text" placeholder="Enter Name">
      <br><br>
-     <input type="email" placeholder="Enter Email" required>
+     <input type="email" placeholder="Enter Email">
      <br><br>
-     <input type="file" required>
+     <input type="file" name="file">
      <br><br>
-     <input type="submit"value="Add Employee" id="btnSubmit" required>
-     
+     <input type="submit" value="Add Employee" id="btnSubmit">
 </form>
 <span id="output"></span>
+
 <script>
-    $(document).ready(function()
-    {
-        $("#my-form").submit(function(event){
+    $(document).ready(function() {
+        $("#my-form").submit(function(event) {
             event.preventDefault();
-            var fm=$("#my-form")[0];
-            var data=new FormData(fm);
+            var fm = $("#my-form")[0];
+            var data = new FormData(fm);
 
-            $("#btnSubmit").prop("disabled",true)
-
+            $("#btnSubmit").prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('addEmployee') }}",
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                   // $("#output").text(data.res);
+                   alert(data.res); 
+                   $("#btnSubmit").prop("disabled", false);
+                },
+                error: function(e) {
+                    $("#output").text(e.responseText);
+                    $("#btnSubmit").prop("disabled", false);
+                }
+            });
         });
     });
 </script>

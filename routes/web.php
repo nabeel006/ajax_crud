@@ -21,4 +21,7 @@ Route::get('/', function () {
 Route::get('add-employee', function () {
     return view('form');
 });
+Route::post('add-employee',[EmployeeController::class,'addEmployee'])->name('addEmployee');
+
+
 Route::resource('employees','EmployeesController');

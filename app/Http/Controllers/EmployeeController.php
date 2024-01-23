@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    public function addEmployee(Request $request)
+    {
+        return response()->json(['res'=>'Data Get successfully']);
+    }
     /**
      * Display a listing of the resource.
      */
